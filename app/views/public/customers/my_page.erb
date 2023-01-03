@@ -1,0 +1,26 @@
+<div class ="container">
+  <h3><span style="background-color: silver;">マイページ</span></h3>
+  
+  <h5><strong>登録情報</strong><%= link_to "編集する", information_edit_customers_path,class: "btn btn-success" %></h5>
+  
+   <table border="1" cellpadding="11" cellspacing="0" width="60%">
+    <tr><th style="background:lightgray"width="30%">氏名</th><td><%= @customers.full_name %></td></tr>
+    <tr><th style="background:lightgray">カナ</th><td><%= @customers.full_name_kana %></td></tr>
+    <tr><th style="background:lightgray">郵便番号</th><td><%= @customers.postal_code %></td></tr>
+    <tr><th style="background:lightgray">住所</th><td><%= @customers.address %></td></tr>
+    <tr><th style="background:lightgray">電話番号</th><td><%= @customers.telephone_number %></td></tr>
+    <tr><th style="background:lightgray">メールアドレス</th><td><%= @customers. email %></td></tr>
+  </table>
+  
+  <table style="border:0px black solid;">
+    <tr>
+      <td style="border:0px black solid; padding:20px;"><h5><strong>配送先</strong><%= link_to "一覧を見る", addresses_path,class: "btn btn-primary" %></h5></td>
+    </tr>
+    <tr>
+      <th><h5><strong>注文履歴</strong><%= link_to "一覧を見る", orders_path,class: "btn btn-primary" %></h5></th>
+      
+    </tr>
+</table>
+  </div>
+  
+Footer

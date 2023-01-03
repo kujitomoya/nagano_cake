@@ -5,69 +5,134 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
+    <script src="https://kit.fontawesome.com/e820bdb904.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
+    <style>
+      .box select{
+      width: 150px;
+      }
+      .example{
+      color: red;
+      }
+     
+    </style>
 
-  <body>
-    <header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container">
-        <%= link_to "Nakano_Cake", admin_path, class:"navbar-brand" %>
-        <div class="collapse navbar-collapse">
-          <ul class="navbar-nav ml-auto">
-            <% if admin_signed_in? %>
-              <li>
-                <%= link_to "商品一覧",  admin_items_path, class:"nav-link text-light" %>
+    <body>
+      <header class="shadow-sm">
+      <nav class="navbar navbar-expand-lg navbar-pink bg-pink" style="background-color: #C0C0C0";>
+        <div class="container">
+          <h2><%= link_to "Nagano_Cake",root_path,class: 'nav-link text-dark' %></h2>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+         
+            
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+              <% if customer_signed_in? %>
+            ようこそ！<%= current_customer.last_name %>さん
+              <li class="nav-item">
+                <%= link_to my_page_customers_path , class: 'nav-link text-dark' do %>
+                <span><i class="fa-solid fa-cake-candles"></i>マイページ</span>
+                <% end %>              
+                </li>
+                 <li class="nav-item">
+                <%= link_to items_path ,class: 'nav-link text-dark' do %>
+                <span><i class="fas fa-users"></i>商品一覧</span>
+                <% end %>
+                <!--<i class="fa-solid fa-users"></i>%= link_to "Users", new_user_registration_path,class: 'nav-link text-white' %>-->
               </li>
-              <li>
-                <%= link_to "会員一覧",  admin_customers_path, class:"nav-link text-light" %>
+              <li class="nav-item">
+                <%= link_to cart_items_path ,class: 'nav-link text-dark' do %>
+                <span><i class="fas fa-book-open"></i>カート</span>
+                <% end %>
               </li>
-              <li>
-                <%= link_to "注文履歴一覧",  admin_path, class:"nav-link text-light" %>
+              
+              <li class="nav-item">
+               <%= link_to  destroy_customer_session_path,class: 'nav-link text-dark' ,method: :delete do %>
+               <span><i class="fas fa-sign-out-alt"></i>ログアウト</span>
               </li>
-              <li>
-                <%= link_to "ジャンル一覧",  admin_genres_path, class:"nav-link text-light" %>
+              <% end %>
+              
+              <% elsif admin_signed_in? %>
+              <li class="nav-item">
+                <%= link_to admin_items_path , class: 'nav-link text-dark' do %>
+                <span><i class="fa-solid fa-cake-candles"></i>商品一覧</span>
+                <% end %>              
+                </li>
+                
+                 <li class="nav-item">
+                <%= link_to admin_customers_path ,class: 'nav-link text-dark' do %>
+                <span><i class="fas fa-users"></i>会員一覧</span>
+                <% end %>
+                <!--<i class="fa-solid fa-users"></i>%= link_to "Users", new_user_registration_path,class: 'nav-link text-white' %>-->
               </li>
-              <li>
-                <%= link_to "ログアウト", destroy_admin_session_path, method:"delete", class:"nav-link text-light" %>
+              <li class="nav-item">
+                <%= link_to admin_root_path ,class: 'nav-link text-dark' do %>
+                <span><i class="fas fa-book-open"></i>注文履歴一覧</span>
+                <% end %>
               </li>
-            <% elsif customer_signed_in? %>
-              <li>
-                <%= link_to "マイページ", customer_path, class:"nav-link text-light" %>
+              
+              <li class="nav-item">
+               <%= link_to  admin_genres_path,class: 'nav-link text-dark' do %>
+               <span><i class="fa-solid fa-g"></i>ジャンル一覧</span>
               </li>
-              <li>
-                <%= link_to "商品一覧", items_path, class:"nav-link text-light" %>
+              <% end %>
+              
+              <li class="nav-item">
+               <%= link_to   destroy_admin_session_path,class: 'nav-link text-dark' ,method: :delete do %>
+               <span><i class="fas fa-sign-out-alt"></i>ログアウト</span>
+              <% end %>
               </li>
-              <li>
-                <%= link_to "カート", cart_items_path, class:"nav-link text-light" %>
-              <li>
-                <%= link_to "ログアウト", destroy_customer_session_path, method:"delete", class:"nav-link text-light" %>
-              </li>
+              
+              
             <% else %>
-              <li>
-                <%= link_to "About", admin_about_path, class:"nav-link text-light" %>
+              <li class="nav-item">
+                <%= link_to about_path,class: 'nav-link text-dark' do %>
+                <span><i class="fas fa-home"></i>About</span>
+                <% end %>
               </li>
-              <li>
-                <%= link_to "商品一覧", admin_items_path, class:"nav-link text-light" %>
+              
+              <li class="nav-item">
+                <%= link_to items_path,class: 'nav-link text-dark' do %>
+                <span><i class="fa-solid fa-cake-candles"></i>商品一覧</span>
+                <% end %>
               </li>
-              <li>
-                <%= link_to "新規登録", new_customer_registration_path, class:"nav-link text-light" %>
+              
+              <li class="nav-item">
+                <%= link_to new_customer_registration_path,class: 'nav-link text-dark' do  %>
+                <span><i class="fas fa-user-plus"></i>新規登録</span>
+                <% end %>
               </li>
-              <li>
-                <%= link_to "ログイン", new_customer_session_path, class:"nav-link text-light" %>
+              
+              <li class="nav-item">
+                <%= link_to customer_session_path,class: 'nav-link text-dark' do  %>
+                <span><i class="fas fa-sign-in-alt"></i>ログイン</span>
+                <% end %>
               </li>
-            <% end %>
-          </ul>
-        </div>
+                <% end %>
+            </ul>
+            <form action="cgi-bin/example.cgi" method="post">
+ 
+  <input type="search" name="search" placeholder="Search">
+  <input type="submit" name="submit" value="検索">
+</form>
+        </div>      
       </div>
     </nav>
-    </header>
-    <main>
+   </header>
+   <main class="m-5">
     <%= yield %>
     </main>
-    <footer>
+    <footer class="text-white pt-5 pb-4" style="background-color: #C0C0C0";>
+      <div class="container">
+        <div class="row no-gutters">
+          <div class="col-md-4"></div>
+          <div class="col-md-8"></div>
+        </div>
+      </div>
     </footer>
   </body>
 </html>
