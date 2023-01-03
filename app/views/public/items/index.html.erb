@@ -1,2 +1,40 @@
-<h1>Public::Items#index</h1>
-<p>Find me in app/views/public/items/index.html.erb</p>
+ <div class ="container-fluid">
+    <div class="row">
+      <div class="col-4">
+        <div class="card" style="width: 18rem;">
+          <div class="card-header">
+            ジャンル検索</div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">焼き菓子</li>
+                  <li class="list-group-item">キャンディー</li>
+                  <li class="list-group-item">ケーキ</li>
+                  <li class="list-group-item">アイス</li>
+              </ul>
+        </div>
+      </div>
+    <div class="col-8">
+      <h2><strong>商品一覧(全<%= Item.count %>件)</strong></h2>
+        <div class="row">
+          <% @items.each do |item| %>
+          <div class="card style="width: 30rem;"">
+            <%= link_to item_path(item.id) do %>
+            <% if item.image.attached? %>
+              <%= image_tag item.image ,size: "200x150" %>
+            <% else %>
+              <%= image_tag "no_image.jpeg",size: "200x150" %>
+            <% end %>
+            <div class="card-body">
+              <p class="card-text"><%= item.name %></p>
+              <p class="card-text">¥<%= (item.price.to_s(:delimited)) %></p>
+              <% end %>
+            </div>
+          </div>
+          <% end %>
+        </div>
+    </div>
+  </div>
+  <div class="d-flex align-items-center justify-content-center">
+    <%= paginate @items %>
+  </div>
+</div>
+Footer

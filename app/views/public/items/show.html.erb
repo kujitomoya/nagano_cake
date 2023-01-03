@@ -1,2 +1,42 @@
-<h1>Public::Items#show</h1>
-<p>Find me in app/views/public/items/show.html.erb</p>
+<div class ="container-fluid">
+    <div class="row">
+      <div class="col-4">
+        <div class="card" style="width: 18rem;">
+          <div class="card-header">
+            ジャンル検索</div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">焼き菓子</li>
+                <li class="list-group-item">キャンディー</li>
+                <li class="list-group-item">ケーキ</li>
+                <li class="list-group-item">アイス</li>
+              </ul>
+        </div>
+      </div>
+    </div>
+      
+      <%= form_with model: @cart_item,url: cart_items_path,method: :post do |f| %>
+        <div class ="row">
+          <div class ="col-4"></div>
+        <div class ="col-4">
+        <% if @item.image.attached? %>
+          <%= image_tag @item.image, size: "250x200" %>
+        <% else %>
+          <%= image_tag 'no_image.jpeg', size: "250x200" %>
+        <% end %>
+        </div>
+      
+    
+      <div class ="col-4">
+        <h4><strong><%= @item.name %></strong></h4>
+          <p><%= @item.introduction %></p>
+            <strong><p>¥<%= (@item.add_tax_price.to_s(:delimited)) %>(税込)</p></strong>
+              <%= f.hidden_field :item_id, :value => @item.id %>
+              <%= f.hidden_field :customer_id, :value => current_customer.id %>
+              <div class="box">
+                <%= f.select :amount, [1,2,3,4,5,6,7,8,9,10], { include_blank: '個数選択'}, { class: 'form-control' , required: true } %>
+                <%= f.submit "カートに入れる",class: "btn btn-success" %>
+              </div>
+              <% end %>
+      </div>
+    </div>
+  </div>

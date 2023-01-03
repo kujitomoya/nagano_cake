@@ -1,0 +1,56 @@
+
+  <div class ="container">
+    
+    
+    <div class ="row">
+      <div class="col-md-3">
+        <div class="card" style="width: 18rem;">
+          <div class="card-header">
+            ジャンル検索</div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">焼き菓子</li>
+                <li class="list-group-item">キャンディー</li>
+                <li class="list-group-item">ケーキ</li>
+                <li class="list-group-item">アイス</li>
+              </ul>
+        </div>
+      </div>
+  
+      <div class="col-md-9">
+        <div calss ="text">
+          <%= image_tag 'no_image.jpeg', size: "600x100" %><br>
+          <a>ようこそ、ながのCAKEへ！</a><br>
+          <a>このサイトは、ケーキ販売のECサイトになります。</a><br>
+          <a>会員でない方も商品の閲覧はできますが、</a><br>
+          <a>購入には会員登録が必要になります。</a><br>
+          <%= image_tag 'no_image.jpeg', size: "600x100" %>
+        </div>
+      </div>
+    </div>
+    <div class ="row">
+      <div class ="col-3"></div>
+      <div class ="col-9">
+        <h3><strong>新着商品</strong></h3>
+          <div class="card d-flex flex-row flex-wrap">
+            <% @item.each do |item| %>
+            <span>
+              <%= link_to item_path(item.id) do %>
+                <% if item.image.attached? %>
+                  <%= image_tag item.image, size: "200x100" %>
+                <% else %>
+                  <%= image_tag "no_image.jpeg", size: "200x100" %>
+                <% end %>
+              <% end %>
+              <div class="card-body">
+                <p class="card-text"><%= item.name %></p>
+                <p class="card-text">¥<%= (item.price.to_s(:delimited)) %></p>
+              </div>
+              </span>
+            <% end %>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class ="aaa">
+  <%= link_to "すべての商品を見る>", items_path %>
+   </div>
