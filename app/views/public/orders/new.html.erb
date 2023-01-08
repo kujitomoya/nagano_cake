@@ -2,12 +2,12 @@
   <h3><span style="background-color: silver;">注文情報入力</span></h3>
   <%= form_with url: comfirm_orders_path,model: @order do |f| %>
     <strong>支払方法</strong><br>
-     <%= f.collection_radio_buttons :payment_method, Order.payment_methods_i18n, :first, :last %><br>
+     <%= f.collection_radio_buttons :payment_method, Order.payment_methods, :first, :last %><br>
         
     <strong>お届け先</strong><br>
       <%= radio_button_tag :address_option, "0" %>
       <%= label_tag :address_option, 'ご自身の住所', value: 0 %><br>
-      <%= @address.address %><br>
+      <%= @address %><br>
       
       <%= radio_button_tag :address_option, "1" %>
      <%= label_tag :address_option, '登録済み住所から選択', value: 1 %><br>
