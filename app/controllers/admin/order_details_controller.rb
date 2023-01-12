@@ -6,10 +6,10 @@ class Admin::OrderDetailsController < ApplicationController
     @order_details = @order.order_details
     
      @order_detail.update(order_detail_params)
-     if @order_details.where(production_status: 2).count >= 1
+     if @order_details.where(making_status: 2).count >= 1
        @order.update(status: 2)
      end
-     if @order.order_details.count == @order_details.where(production_status: 3).count
+     if @order.order_details.count == @order_details.where(making_status: 3).count
        @order.update(status: 3)
      end
       
@@ -21,6 +21,6 @@ class Admin::OrderDetailsController < ApplicationController
   private
    
    def order_detail_params 
-     params.require(:order_detail).permit(:production_status)
+     params.require(:order_detail).permit(:making_status)
    end
 end
