@@ -1,5 +1,6 @@
 class Admin::OrdersController < ApplicationController
-  
+
+ 
   def show
     @total = 0
     @shipping_cost = 800
