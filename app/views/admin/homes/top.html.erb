@@ -8,7 +8,6 @@
         <th width="20%">購入日時</th>
         <th>購入者</th>
         <th width="20%">注文個数</th>
-        <th width="20%">注文ステータス</th>
      </tr>
   </thead>
   <tbody>
@@ -17,7 +16,6 @@
       <td><%= link_to order.created_at.strftime('%Y/%m/%d %H:%M:%S'), admin_order_path(order.id) %></td>
       <td><%= order.customer.full_name %></td>
       <td><%= order.order_details.sum(:amount) %></td>
-      <td><%= order.status %></td>
     </tr>
     <% end %>
   </tbody>

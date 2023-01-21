@@ -6,8 +6,7 @@
             <table border="1" cellpadding="11" cellspacing="0" width="100%">
               <tr><th style="background:lightgray"width="30%">注文日</th></th><td><%= @order.created_at.strftime('%Y/%m/%d') %></td></tr>
               <tr><th style="background:lightgray">配送先</th><td>〒<%= @order.postal_code %><br><%= @order.address %><br><%= @order.name %></td></tr>
-              <tr><th style="background:lightgray">支払方法</th><td><%= @order.payment_method %></td></tr>
-              <tr><th style="background:lightgray">ステータス</th><td><%= @order.status %></td></tr>
+              <tr><th style="background:lightgray">支払方法</th><td><%= @order.payment_method_i18n %></td></tr>
             </table>
           </div>
           <div class ="col-4">
